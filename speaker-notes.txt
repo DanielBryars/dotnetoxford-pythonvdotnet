@@ -1,0 +1,107 @@
+Slide: Title
+Most ML projects today start in Python. This talk looks at how that happened and what C# offers.
+
+---
+
+Slide: About Me
+20 years in .NET, C# is my main language. MSc in AI meant using Python extensively -- Jupyter, PyTorch, NumPy.
+
+---
+
+Slide: Two Languages, Two Philosophies
+Python: Christmas 1989 hobby project. Guido wanted a "descendant of ABC that would appeal to Unix/C hackers" -- a glue language for tasks too hard for shell scripts but too small for C. C#: after MS lost the Sun/Java lawsuit, Anders Hejlsberg (created Turbo Pascal and Delphi) designed C# combining C++, Java, and Delphi's component model for .NET. Closed source and Windows-only for 14 years meant no presence in academia.
+
+---
+
+Slide: Timeline (part 1)
+By ~2000, Python shipped with major Linux distros -- Red Hat, Debian -- used for system tools and installers. Part of the OS. A PhD student could ssh into a server and run python3 script.py -- no admin rights, no installs. SciPy: Matlab licences cost thousands per seat, per year, per toolbox. SciPy gave the same capabilities for free.
+
+---
+
+Slide: Timeline (part 2)
+C# open sourced in 2014. ML.NET arrived in 2018 -- six years after deep learning took off. Generic math with INumber<T> landed in .NET 7, 2022.
+
+---
+
+Slide: The Paradox
+By traditional software engineering metrics, C# scores higher -- faster, type-safe, better tooling. But the ML ecosystem developed around Python.
+
+---
+
+Slide: Ecosystem Convergence
+Python delegates computation to compiled code. NumPy calls BLAS/LAPACK (Fortran, 1970s). PyTorch dispatches to CUDA kernels. One standard per job -- everyone uses NumPy arrays, so matplotlib, SciPy, pandas, and PyTorch all interoperate without adapters. In C#, Math.NET has its own Matrix, ML.NET has DataView, TorchSharp has Tensor -- different types at every boundary.
+
+---
+
+Slide: Everything Speaks NumPy
+In C# you'd need Math.NET's Vector for numerics, a different type for ML.NET, another for TorchSharp -- conversion code at every boundary. In Python, NumPy arrays are accepted and returned by SciPy, matplotlib, pandas, and PyTorch. Duck typing helps: if it has shape and supports arithmetic, it works.
+
+---
+
+Slide: Python Doesn't Do the Maths
+The @ operator maps to a BLAS dgemm call (Fortran). Broadcasting: multiply a (3,) vector by a (2,1) matrix, get a (2,3) result -- no loops, no allocation. Vectorised sqrt across thousands of points is a single C call. Slicing returns views, not copies. The implicit shape rules can be confusing -- printing .shape is the main debugging technique.
+
+---
+
+Slide: Jupyter vs LINQPad
+Coming from Visual Studio, Jupyter initially felt primitive. But the feedback loop -- run a cell, see the plot, tweak -- is effective. LINQPad is a good tool but stayed niche. Jupyter became the standard interface for ML research. REPLs in C# circa 2010 were limited.
+
+---
+
+Slide: Jupyter Notebook - Neural Network Setup
+MSc assignment -- setting up a neural network in Jupyter. Model, loss function, optimiser, GPU transfer in one notebook.
+
+---
+
+Slide: Jupyter Notebook - Training Loop
+Training loop, validation, and loss curve rendered inline. Training and validation loss diverging is visible immediately.
+
+---
+
+Slide: Jupyter Notebook - Predictions
+Predictions vs actuals, Lissajous figures, model summary -- rendered inline. Code, train, visualise, iterate without leaving the notebook.
+
+---
+
+Slide: Takeaway
+Python has the experimentation ecosystem -- notebooks, duck typing, libraries. C# has type safety, performance, and production tooling. They serve different stages of the pipeline.
+
+---
+
+Slide: Live Examples
+All examples are in the repo. Python: pip install -r requirements.txt. C#: dotnet restore pulls the NuGet packages.
+
+---
+
+Slide: Duck Typing
+One function, no generics, no overloads, no interfaces -- works on int, float, complex, ndarray, and GPU tensor. In C#, INumber covers int and double, but Complex doesn't implement it, arrays need LINQ, tensors use a separate API. Python resolves the operators dynamically at runtime.
+
+---
+
+Slide: Autograd - Calculus for Free
+Both compute dy/dx = 2x + 2 = 8. Differences: Python has ** for power, C# needs .pow(). Python's .grad is a property, C#'s is a method returning nullable, needs ! operator, and .item needs a generic type parameter.
+
+---
+
+Slide: GPU Computing
+TorchSharp mirrors PyTorch closely here. @ vs .mm() is minor. The setup friction is the difference: choosing the right native backend NuGet package (~800MB), matching CUDA toolkit version. Python: pip install torch.
+
+---
+
+Slide: Train a Neural Network (XOR)
+Both train the same XOR network. C# differences: named layer tuples, using var for tensor disposal (unmanaged memory), .forward() instead of calling the model directly, learningRate vs lr.
+
+---
+
+Slide: Lorenz Attractor (image)
+Lorenz attractor -- three coupled differential equations. 15 lines of Python.
+
+---
+
+Slide: Lorenz Attractor
+The computation code is comparable. The difference is plotting -- Python: three lines with matplotlib. C#: pick a plotting library, add the NuGet, configure it, and none handle 3D scatter well. Typical outcome: export to CSV and plot in Python.
+
+---
+
+Slide: Ecosystem - Everyone Speaks NumPy
+NumPy array goes into SciPy, comes back as NumPy, goes into matplotlib. No type conversion. In C# you'd need three libraries with three different types -- Math.NET for numerics, something for filtering, something for plotting -- plus adapters between them.
