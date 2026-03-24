@@ -154,7 +154,7 @@
           <li>20 years in .NET <span class="sub">&mdash; C# by day, Python by night</span></li>
           <li>Recently completed MSc in AI <span class="sub">(heavy Python use)</span></li>
         </ul>
-        <p style="font-size:0.4em; color:#666; margin-top:32px;"><em>slides and code available at <a href="https://dotnetoxford-pythonvdotnet.bryars.com" style="color:#666;">dotnetoxford-pythonvdotnet.bryars.com</a></em></p>
+        <p style="font-size:0.5em; margin-top:32px;"><a href="https://dotnetoxford-pythonvdotnet.bryars.com" style="color:#42affa;">dotnetoxford-pythonvdotnet.bryars.com</a><br><span style="font-size:0.7em; color:#666;"><em>slides and code available here</em></span></p>
         <aside class="notes">
           I've been a .NET developer for 20 years, so C# is home. But my MSc in AI meant living in Python — Jupyter notebooks, PyTorch, NumPy — and I came to appreciate why it dominates ML.
         </aside>
@@ -211,7 +211,7 @@
         </section>
 
         <section>
-          <h3>Timeline (cont.)</h3>
+          <h3>Timeline</h3>
           <ul class="timeline">
             <li><span class="year">2014</span> <span class="label label-cs">C#</span> .NET goes open source / cross-platform</li>
             <li><span class="year">2014</span> <span class="label label-py">PY</span> Jupyter Project (from IPython)</li>
@@ -262,9 +262,24 @@
             <li><strong>PyTorch / TensorFlow</strong> <span class="sub">&mdash; CUDA kernels</span></li>
             <li><strong>Jupyter</strong> <span class="sub">&mdash; interactive notebooks</span></li>
           </ul>
-          <p style="font-size:0.5em; color:#888; margin-top:32px;"><em>One standard per job &mdash; everything speaks NumPy</em></p>
           <aside class="notes">
             This is the key insight. Python is slow — everyone knows that. But Python ML is fast because Python never does the heavy lifting. NumPy calls into BLAS and LAPACK — battle-hardened Fortran code from the 1970s. PyTorch dispatches to CUDA kernels. Python is just the steering wheel. And crucially — there's one standard per job. Everyone uses NumPy arrays. So matplotlib knows how to plot them. SciPy knows how to filter them. pandas knows how to store them. PyTorch can convert to and from them. The whole ecosystem converges on one array type. In C#, Math.NET has its own Matrix, ML.NET has DataView, TorchSharp has Tensor — nothing talks to anything else natively.
+          </aside>
+        </section>
+
+        <section>
+          <p>Everything speaks <strong>NumPy</strong></p>
+<pre><code class="language-python">import numpy as np
+from scipy import signal
+import matplotlib.pyplot as plt
+
+t = np.linspace(0, 1, 1000)               # NumPy
+noisy = np.sin(2*np.pi*5*t) + np.random.randn(len(t))
+filtered = signal.filtfilt(*signal.butter(4, 15, fs=1000), noisy)  # SciPy ← NumPy
+plt.plot(t, filtered)                      # Matplotlib ← NumPy</code></pre>
+          <p style="font-size:0.5em; color:#888; margin-top:32px;"><em>One array type. Every library accepts it. No adapters needed.</em></p>
+          <aside class="notes">
+            In C# you'd need Math.NET's Vector for numerics, a different type for ML.NET, another for TorchSharp. Every boundary means conversion code. In Python, NumPy is the universal currency — SciPy, matplotlib, pandas, PyTorch all accept and return NumPy arrays. Duck typing makes this natural: if it has shape and supports arithmetic, it just works. This is the network effect at the library level.
           </aside>
         </section>
 
@@ -319,18 +334,23 @@ batch = images[0:32, :, :, :]    # zero-cost slice</code></pre>
         </section>
 
         <section>
-          <p>Everything speaks <strong>NumPy</strong></p>
-<pre><code class="language-python">import numpy as np
-from scipy import signal
-import matplotlib.pyplot as plt
-
-t = np.linspace(0, 1, 1000)               # NumPy
-noisy = np.sin(2*np.pi*5*t) + np.random.randn(len(t))
-filtered = signal.filtfilt(*signal.butter(4, 15, fs=1000), noisy)  # SciPy ← NumPy
-plt.plot(t, filtered)                      # Matplotlib ← NumPy</code></pre>
-          <p style="font-size:0.5em; color:#888; margin-top:32px;"><em>One array type. Every library accepts it. No adapters needed.</em></p>
+          <img src="images/Jupyter01.png" alt="Jupyter notebook — neural network setup" style="max-height:85vh;">
           <aside class="notes">
-            In C# you'd need Math.NET's Vector for numerics, a different type for ML.NET, another for TorchSharp. Every boundary means conversion code. In Python, NumPy is the universal currency — SciPy, matplotlib, pandas, PyTorch all accept and return NumPy arrays. Duck typing makes this natural: if it has shape and supports arithmetic, it just works. This is the network effect at the library level.
+            This is from one of my MSc assignments — setting up a neural network in a Jupyter notebook. Define the model, loss function, optimiser, move to GPU — all in one place.
+          </aside>
+        </section>
+
+        <section>
+          <img src="images/Jupyter02.png" alt="Jupyter notebook — training loop and loss curve" style="max-height:85vh;">
+          <aside class="notes">
+            Training loop, validation, and a live loss curve — all inline. You can see the training and validation loss diverging. This feedback loop is why Jupyter won.
+          </aside>
+        </section>
+
+        <section>
+          <img src="images/Jupyter03.png" alt="Jupyter notebook — predictions vs actuals" style="max-height:85vh;">
+          <aside class="notes">
+            Predictions vs actuals, Lissajous figures, model summary — all rendered inline. This is the Jupyter experience: code, train, visualise, iterate. All without leaving the notebook.
           </aside>
         </section>
 
