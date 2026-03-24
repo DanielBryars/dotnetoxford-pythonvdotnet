@@ -10,6 +10,10 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/plugin/highlight/monokai.css">
 
   <style>
+    .sub {
+      font-size: 0.7em;
+      color: #aaa;
+    }
     .two-col {
       display: flex;
       gap: 40px;
@@ -128,9 +132,7 @@
 
       <!-- ============ SLIDE 1: TITLE ============ -->
       <section>
-        <h2>Why Python Won ML</h2>
-        <h4><em>(and what C# can still do about it)</em></h4>
-        <p>Daniel Bryars</p>
+        <img src="Poster/python_vs_csharp_poster.png" alt="Python vs C# poster" style="max-height:85vh;">
         <aside class="notes">
           If you start an ML project today… you pick Python. Why? This talk is about how that happened — and whether C# can claw back ground.
         </aside>
@@ -138,13 +140,13 @@
 
       <!-- ============ SLIDE 2: ABOUT ME ============ -->
       <section>
-        <h3>About Me</h3>
+        <h3>Daniel Bryars</h3>
         <div class="inventor-card">
           <img src="images/Profile.png" alt="Daniel Bryars">
         </div>
         <ul>
-          <li>20 years in .NET &mdash; C# by day, Python by night</li>
-          <li>Recently completed MSc in AI (heavy Python use)</li>
+          <li>20 years in .NET <span class="sub">&mdash; C# by day, Python by night</span></li>
+          <li>Recently completed MSc in AI <span class="sub">(heavy Python use)</span></li>
         </ul>
         <aside class="notes">
           I've been a .NET developer for 20 years, so C# is home. But my MSc in AI meant living in Python — Jupyter notebooks, PyTorch, NumPy — and I came to appreciate why it dominates ML.
@@ -160,9 +162,9 @@
             <h4>Python</h4>
             <p>Guido van Rossum, 1991</p>
             <ul style="font-size:0.8em; text-align:left; margin-top:12px;">
-              <li>Readability over speed</li>
-              <li>Scripting &amp; teaching</li>
-              <li>Never intended for ML</li>
+              <li>Readability <span class="sub">over speed</span></li>
+              <li>Scripting <span class="sub">&amp; teaching</span></li>
+              <li>Never <span class="sub">intended for ML</span></li>
             </ul>
           </div>
           <div class="col inventor-card">
@@ -170,9 +172,9 @@
             <h4>C#</h4>
             <p>Anders Hejlsberg, 2000</p>
             <ul style="font-size:0.8em; text-align:left; margin-top:12px;">
-              <li>Strong typing &amp; tooling</li>
-              <li>Enterprise-focused</li>
-              <li>Closed source until 2014</li>
+              <li>Strong typing <span class="sub">&amp; tooling</span></li>
+              <li>Enterprise <span class="sub">focused</span></li>
+              <li>Closed source <span class="sub">until 2014</span></li>
             </ul>
           </div>
         </div>
@@ -181,9 +183,45 @@
         </aside>
       </section>
 
-      <!-- ============ SLIDE 5: THE PARADOX ============ -->
+      <!-- ============ SLIDE 4: TIMELINE ============ -->
       <section>
-        <h3>The Paradox</h3>
+        <section>
+          <h3>Timeline</h3>
+          <ul class="timeline">
+            <li><span class="year">1991</span> <span class="label label-py">PY</span> Python released</li>
+            <li><span class="year">1995</span> <span class="label label-py">PY</span> NumPy predecessor (Numeric)</li>
+            <li><span class="year">2000</span> <span class="label label-cs">C#</span> C# 1.0 (closed source, Windows-only)</li>
+            <li><span class="year">2001</span> <span class="label label-py">PY</span> SciPy &amp; IPython &mdash; free Matlab alternative</li>
+            <li><span class="year">2005</span> <span class="label label-py">PY</span> NumPy 1.0 (wraps Fortran BLAS/LAPACK)</li>
+            <li><span class="year">2007</span> <span class="label label-py">PY</span> scikit-learn begins</li>
+            <li><span class="year">2011</span> <span class="label label-py">PY</span> IPython Notebook launches</li>
+            <li><span class="year">2012</span> <span class="label label-py">PY</span> Deep learning explodes (AlexNet)</li>
+          </ul>
+          <p style="font-size:0.5em; color:#888; margin-top:16px;">more</p>
+          <aside class="notes">
+            Look at this timeline. By the time C# even existed, Python already had numerical computing locked down. SciPy was huge — Matlab licences cost thousands per seat, per year, per toolbox. SciPy gave academia the same capabilities for free. That alone drove massive adoption. By the time deep learning exploded in 2012, Python had a 20-year head start.
+          </aside>
+        </section>
+
+        <section>
+          <h3>Timeline (cont.)</h3>
+          <ul class="timeline">
+            <li><span class="year">2014</span> <span class="label label-cs">C#</span> .NET goes open source / cross-platform</li>
+            <li><span class="year">2014</span> <span class="label label-py">PY</span> Jupyter Project (from IPython)</li>
+            <li><span class="year">2015</span> <span class="label label-py">PY</span> TensorFlow released (Google)</li>
+            <li><span class="year">2016</span> <span class="label label-py">PY</span> PyTorch released (Facebook/Meta)</li>
+            <li><span class="year">2018</span> <span class="label label-cs">C#</span> ML.NET 1.0</li>
+            <li><span class="year">2021</span> <span class="label label-cs">C#</span> TorchSharp (PyTorch for .NET)</li>
+            <li><span class="year">2022</span> <span class="label label-cs">C#</span> Generic Math / INumber&lt;T&gt; (.NET 7)</li>
+          </ul>
+          <aside class="notes">
+            C# didn't go open source until 2014. ML.NET arrived in 2018 — six years after deep learning took off. Generic math with INumber&lt;T&gt; finally landed in .NET 7 in 2022. Too late to change the default, but not too late to be useful.
+          </aside>
+        </section>
+      </section>
+
+      <!-- ============ SLIDE 5: THE PARADOX (no title) ============ -->
+      <section>
         <div class="two-col">
           <div class="col">
             <h4>Python</h4>
@@ -202,63 +240,46 @@
             </ul>
           </div>
         </div>
-        <p><strong>Yet &rarr; Python dominates ML</strong></p>
+        <p style="font-size:0.5em; color:#888; margin-top:32px;"><em>Yet &rarr; Python dominates ML</em></p>
         <aside class="notes">
           By every traditional software engineering metric, C# should win. It's faster, safer, better tooled. But ML doesn't play by those rules — the bottleneck was never the language, it was the ecosystem.
         </aside>
       </section>
 
-      <!-- ============ SLIDE 6: TIMELINE ============ -->
-      <section>
-        <section>
-          <h3>What Actually Happened</h3>
-          <ul class="timeline">
-            <li><span class="year">1991</span> <span class="label label-py">PY</span> Python released</li>
-            <li><span class="year">1995</span> <span class="label label-py">PY</span> NumPy predecessor (Numeric)</li>
-            <li><span class="year">2000</span> <span class="label label-cs">C#</span> C# 1.0 (closed source, Windows-only)</li>
-            <li><span class="year">2001</span> <span class="label label-py">PY</span> SciPy &amp; IPython &mdash; free Matlab alternative</li>
-            <li><span class="year">2005</span> <span class="label label-py">PY</span> NumPy 1.0 (wraps Fortran BLAS/LAPACK)</li>
-            <li><span class="year">2007</span> <span class="label label-py">PY</span> scikit-learn begins</li>
-            <li><span class="year">2011</span> <span class="label label-py">PY</span> IPython Notebook launches</li>
-            <li><span class="year">2012</span> <span class="label label-py">PY</span> Deep learning explodes (AlexNet)</li>
-          </ul>
-          <p style="font-size:0.6em; margin-top:16px;">&darr; more</p>
-          <aside class="notes">
-            Look at this timeline. By the time C# even existed, Python already had numerical computing locked down. SciPy was huge — Matlab licences cost thousands per seat, per year, per toolbox. SciPy gave academia the same capabilities for free. That alone drove massive adoption. By the time deep learning exploded in 2012, Python had a 20-year head start.
-          </aside>
-        </section>
-
-        <section>
-          <h3>What Actually Happened (cont.)</h3>
-          <ul class="timeline">
-            <li><span class="year">2014</span> <span class="label label-cs">C#</span> .NET goes open source / cross-platform</li>
-            <li><span class="year">2014</span> <span class="label label-py">PY</span> Jupyter Project (from IPython)</li>
-            <li><span class="year">2015</span> <span class="label label-py">PY</span> TensorFlow released (Google)</li>
-            <li><span class="year">2016</span> <span class="label label-py">PY</span> PyTorch released (Facebook/Meta)</li>
-            <li><span class="year">2018</span> <span class="label label-cs">C#</span> ML.NET 1.0</li>
-            <li><span class="year">2021</span> <span class="label label-cs">C#</span> TorchSharp (PyTorch for .NET)</li>
-            <li><span class="year">2022</span> <span class="label label-cs">C#</span> Generic Math / INumber&lt;T&gt; (.NET 7)</li>
-          </ul>
-          <aside class="notes">
-            C# didn't go open source until 2014. ML.NET arrived in 2018 — six years after deep learning took off. Generic math with INumber&lt;T&gt; finally landed in .NET 7 in 2022. Too late to change the default, but not too late to be useful.
-          </aside>
-        </section>
-      </section>
-
       <!-- ============ SLIDE 7: THE STACK ============ -->
       <section>
         <section>
-          <h3>Python&rsquo;s Unfair Advantage</h3>
+          <h3>Ecosystem Convergence</h3>
           <ul>
-            <li><strong>NumPy</strong> &mdash; vectorised maths, Fortran BLAS/LAPACK core</li>
-            <li><strong>PyTorch / TensorFlow</strong> &mdash; GPU-native, CUDA kernels</li>
-            <li><strong>Jupyter</strong> &mdash; REPL-driven, visual, shareable</li>
-            <li><strong>One standard per job</strong> &mdash; everyone uses NumPy, so everything speaks NumPy</li>
+            <li><strong>NumPy</strong> <span class="sub">&mdash; Fortran BLAS/LAPACK under the hood</span></li>
+            <li><strong>PyTorch / TensorFlow</strong> <span class="sub">&mdash; CUDA kernels</span></li>
+            <li><strong>Jupyter</strong> <span class="sub">&mdash; interactive notebooks</span></li>
           </ul>
-          <p class="fragment" style="margin-top:24px;"><em>Python doesn&rsquo;t do the maths &mdash; it orchestrates C, Fortran, and CUDA</em></p>
-          <p style="font-size:0.6em; margin-top:16px;">&darr; Ecosystem convergence</p>
+          <p style="font-size:0.5em; color:#888; margin-top:32px;"><em>One standard per job &mdash; everything speaks NumPy</em></p>
           <aside class="notes">
             This is the key insight. Python is slow — everyone knows that. But Python ML is fast because Python never does the heavy lifting. NumPy calls into BLAS and LAPACK — battle-hardened Fortran code from the 1970s. PyTorch dispatches to CUDA kernels. Python is just the steering wheel. And crucially — there's one standard per job. Everyone uses NumPy arrays. So matplotlib knows how to plot them. SciPy knows how to filter them. pandas knows how to store them. PyTorch can convert to and from them. The whole ecosystem converges on one array type. In C#, Math.NET has its own Matrix, ML.NET has DataView, TorchSharp has Tensor — nothing talks to anything else natively.
+          </aside>
+        </section>
+
+        <section>
+          <p><em>Python doesn&rsquo;t do the maths &mdash; it orchestrates C, Fortran, and CUDA</em></p>
+<pre><code class="language-python"># @ calls into BLAS dgemm (Fortran) — not Python
+C = A @ B                        # matrix multiply
+
+# Broadcasting — no loops, no copies
+prices = np.array([10, 20, 30])  # shape (3,)
+tax    = np.array([[1.1],
+                   [1.2]])       # shape (2, 1)
+totals = prices * tax            # shape (2, 3) — automatic
+
+# Vectorised operations — one call to C
+distances = np.sqrt(np.sum((points - centre)**2, axis=1))
+
+# Slicing — views, not copies
+batch = images[0:32, :, :, :]    # zero-cost slice</code></pre>
+          <p style="font-size:0.5em; color:#888; margin-top:32px;"><em>Succinct and powerful &mdash; but can trip you up (print shapes early and often)</em></p>
+          <aside class="notes">
+            The @ operator compiles down to a BLAS dgemm call — battle-tested Fortran from the 1970s. Broadcasting lets you multiply a (3,) vector by a (2,1) matrix and get a (2,3) result with no explicit loops or memory allocation. Vectorised sqrt across thousands of points is a single C call. Slicing gives you views, not copies, so it's zero-cost. This is incredibly powerful, but the implicit shape rules trip up beginners constantly — the number one debugging technique in NumPy is printing .shape everywhere.
           </aside>
         </section>
 
@@ -268,30 +289,29 @@
             <div class="col">
               <h4>Jupyter</h4>
               <ul>
-                <li>Fernando P&eacute;rez, 2001 (as IPython)</li>
-                <li>Browser-based notebooks</li>
-                <li>Inline plots &amp; rich output</li>
-                <li>Became the standard in academia</li>
+                <li>Fernando P&eacute;rez <span class="sub">2001 (as IPython)</span></li>
+                <li>Browser-based <span class="sub">notebooks</span></li>
+                <li>Inline plots <span class="sub">&amp; rich output</span></li>
+                <li>Standard <span class="sub">in academia</span></li>
               </ul>
             </div>
             <div class="col">
               <h4>LINQPad</h4>
               <ul>
-                <li>Joseph Albahari, 2007</li>
-                <li>Desktop scratchpad for .NET</li>
-                <li>Brilliant &mdash; but niche</li>
-                <li>No academic adoption</li>
+                <li>Joseph Albahari <span class="sub">2007</span></li>
+                <li>Desktop scratchpad <span class="sub">for .NET</span></li>
+                <li>Brilliant <span class="sub">&mdash; but niche</span></li>
+                <li>No academic <span class="sub">adoption</span></li>
               </ul>
             </div>
           </div>
-          <p class="fragment" style="margin-top:16px;"><em>Same idea, different worlds. Jupyter reached researchers. LINQPad reached developers.</em></p>
+          <p style="font-size:0.5em; color:#888; margin-top:32px;"><em>Same idea, different worlds. Jupyter reached researchers. LINQPad reached developers.</em></p>
           <aside class="notes">
             I remember being repulsed by Jupyter when I first used it — coming from C# and Visual Studio, it felt primitive. But the feedback loop — run a cell, see the plot, tweak — is addictive. LINQPad is arguably better as a tool, but Jupyter became the interface to ML. And doing a REPL in C# in 2010? Painful.
           </aside>
         </section>
 
         <section>
-          <h3>Ecosystem Convergence</h3>
           <p>Everything speaks <strong>NumPy</strong></p>
 <pre><code class="language-python">import numpy as np
 from scipy import signal
@@ -301,39 +321,12 @@ t = np.linspace(0, 1, 1000)               # NumPy
 noisy = np.sin(2*np.pi*5*t) + np.random.randn(len(t))
 filtered = signal.filtfilt(*signal.butter(4, 15, fs=1000), noisy)  # SciPy ← NumPy
 plt.plot(t, filtered)                      # Matplotlib ← NumPy</code></pre>
-          <p class="fragment" style="margin-top:16px;"><em>One array type. Every library accepts it. No adapters needed.</em></p>
+          <p style="font-size:0.5em; color:#888; margin-top:32px;"><em>One array type. Every library accepts it. No adapters needed.</em></p>
           <aside class="notes">
             In C# you'd need Math.NET's Vector for numerics, a different type for ML.NET, another for TorchSharp. Every boundary means conversion code. In Python, NumPy is the universal currency — SciPy, matplotlib, pandas, PyTorch all accept and return NumPy arrays. Duck typing makes this natural: if it has shape and supports arithmetic, it just works. This is the network effect at the library level.
           </aside>
         </section>
 
-        <section>
-          <h3>Lorenz Attractor &mdash; 15 Lines</h3>
-          <div class="two-col">
-            <div class="col">
-<pre><code class="language-python" style="font-size:0.9em;">dt, n = 0.01, 10000
-sigma, beta, rho = 10, 8/3, 28
-xyz = np.zeros((n, 3))
-xyz[0] = [0.1, 0, 0]
-
-for i in range(n - 1):
-    x, y, z = xyz[i]
-    xyz[i+1] = xyz[i] + dt * np.array([
-        sigma*(y-x),
-        x*(rho-z) - y,
-        x*y - beta*z])
-
-ax.scatter(*xyz.T,
-    c=np.arange(n), cmap="plasma")</code></pre>
-            </div>
-            <div class="col">
-              <img src="images/lorenz.png" alt="Lorenz attractor" style="max-height:400px;">
-            </div>
-          </div>
-          <aside class="notes">
-            15 lines. NumPy for the computation, matplotlib for the plot. This is chaotic dynamics — a system of three coupled differential equations. Try doing this in C# — the maths is similar, but plotting it? You'd need a NuGet package, 20 lines of configuration, and none of them do 3D scatter well. You'd probably end up exporting to CSV and opening it in Python anyway. Run examples/python/lorenz.py to see this live.
-          </aside>
-        </section>
       </section>
 
       <!-- ============ SLIDE 8: THE KILLER PROPERTY ============ -->
@@ -352,7 +345,7 @@ f(np.array([1,2,3]))   # ndarray → [3, 8, 15]
 import torch
 f(torch.tensor([1.,2.,3.]))  # GPU tensor</code></pre>
           <p><strong>One function. Five domains. Zero changes.</strong></p>
-          <p style="font-size:0.6em; margin-top:16px;">&darr; same thing in C#</p>
+          <p style="font-size:0.5em; color:#888; margin-top:16px;">more</p>
           <aside class="notes">
             This is the slide that should make the audience pause. One function — no generics, no overloads, no interfaces — and it works on integers, floats, complex numbers, arrays of a million elements, and GPU tensors. Duck typing means if it quacks like a number, Python will do maths on it.
           </aside>
@@ -380,23 +373,7 @@ F(2.5);       // double → 11.25</code></pre>
         </section>
       </section>
 
-      <!-- ============ SLIDE 9: WHAT C# CAN DO ============ -->
-      <section>
-        <h3>What C# Can Still Do About It</h3>
-        <ul>
-          <li><strong>ML.NET</strong> &mdash; production inference, no Python dependency</li>
-          <li><strong>TorchSharp</strong> &mdash; PyTorch bindings for .NET</li>
-          <li><strong>ONNX Runtime</strong> &mdash; deploy any model, any framework</li>
-          <li><strong>Semantic Kernel</strong> &mdash; AI orchestration in C#</li>
-          <li><strong>Generic Math</strong> &mdash; INumber&lt;T&gt; (.NET 7+)</li>
-        </ul>
-        <p class="fragment" style="margin-top:24px;"><em>Train in Python. Ship in C#.</em></p>
-        <aside class="notes">
-          C# doesn't need to win training — that ship has sailed. But deployment? That's where type safety, performance, and tooling shine. ONNX Runtime lets you train a model in PyTorch and run it in a C# microservice. Semantic Kernel is Microsoft's play for AI-native C# apps. The smart play: use both.
-        </aside>
-      </section>
-
-      <!-- ============ SLIDE 10: TAKEAWAY ============ -->
+      <!-- ============ SLIDE 9: TAKEAWAY ============ -->
       <section>
         <h2>Takeaway</h2>
         <p>Python won because it made<br><strong>fast things easy</strong></p>
@@ -489,11 +466,11 @@ Console.WriteLine(
     x.grad()!.item&lt;float&gt;());</code></pre>
           </div>
         </div>
-        <p class="fragment" style="font-size:0.6em; margin-top:12px; color:#aaa;">
+        <p style="font-size:0.5em; color:#888; margin-top:32px;"><em>
           <code>x**2</code> vs <code>x.pow(2)</code> &bull;
           <code>x.grad</code> vs <code>x.grad()!.item&lt;float&gt;()</code> &bull;
           Paper cuts add up
-        </p>
+        </em></p>
         <aside class="notes">
           The maths is identical — both compute dy/dx = 2x + 2 = 8. But look at the ergonomics. Python has operator overloading for power. C# needs .pow(). Python's .grad is a property. C#'s is a method that returns nullable, needs bang operator, and .item needs a generic type parameter. Each one is small. Together they make experimentation slower.
         </aside>
@@ -527,10 +504,6 @@ b = b.cuda();
 c = a.mm(b);         // GPU</code></pre>
           </div>
         </div>
-        <p class="fragment" style="font-size:0.6em; margin-top:12px; color:#aaa;">
-          Code is nearly identical &mdash; but C# needs the right NuGet package<br>
-          (<code>libtorch-cuda-*</code>, ~800MB) and a matching CUDA toolkit version
-        </p>
         <aside class="notes">
           This is actually TorchSharp's strongest showing — the API mirrors PyTorch almost exactly. The @ operator vs .mm() is minor. The real friction is setup: you need to pick the right native backend NuGet package, it's an 800MB download, and it has to match your CUDA toolkit version exactly. In Python: pip install torch — done.
         </aside>
@@ -597,11 +570,11 @@ for (int epoch = 0; epoch &lt; 1000;
 }</code></pre>
           </div>
         </div>
-        <p class="fragment" style="font-size:0.6em; margin-top:12px; color:#aaa;">
+        <p style="font-size:0.5em; color:#888; margin-top:32px;"><em>
           Named tuples &bull; <code>using var</code> for every tensor &bull;
           <code>model.forward(X)</code> vs <code>model(X)</code> &bull;
           <code>learningRate:</code> vs <code>lr=</code>
-        </p>
+        </em></p>
         <aside class="notes">
           Both train the same XOR network. Both work. But the C# version has named layer tuples, using var for tensor disposal (every tensor is unmanaged memory), .forward() instead of calling the model directly, and the longer parameter name learningRate vs lr. None of these are deal-breakers — but in a research loop where you're iterating fast, every character counts.
         </aside>
