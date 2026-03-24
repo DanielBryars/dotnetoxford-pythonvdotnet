@@ -10,6 +10,12 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/plugin/highlight/monokai.css">
 
   <style>
+    .reveal {
+      background: #000 !important;
+    }
+    section.has-dark-background, .reveal .slide-background {
+      background: #000 !important;
+    }
     .sub {
       font-size: 0.7em;
       color: #aaa;
@@ -148,6 +154,7 @@
           <li>20 years in .NET <span class="sub">&mdash; C# by day, Python by night</span></li>
           <li>Recently completed MSc in AI <span class="sub">(heavy Python use)</span></li>
         </ul>
+        <p style="font-size:0.4em; color:#666; margin-top:32px;"><em>slides and code available at <a href="https://dotnetoxford-pythonvdotnet.bryars.com" style="color:#666;">dotnetoxford-pythonvdotnet.bryars.com</a></em></p>
         <aside class="notes">
           I've been a .NET developer for 20 years, so C# is home. But my MSc in AI meant living in Python — Jupyter notebooks, PyTorch, NumPy — and I came to appreciate why it dominates ML.
         </aside>
@@ -159,8 +166,8 @@
         <div class="two-col">
           <div class="col inventor-card">
             <img src="images/GuidovanRossum.jpg" alt="Guido van Rossum">
-            <h4>Python</h4>
-            <p>Guido van Rossum, 1991</p>
+            <h4>Python <span class="sub">(1991)</span></h4>
+            <p>Guido van Rossum</p>
             <ul style="font-size:0.8em; text-align:left; margin-top:12px;">
               <li>Readability <span class="sub">over speed</span></li>
               <li>Scripting <span class="sub">&amp; teaching</span></li>
@@ -169,8 +176,8 @@
           </div>
           <div class="col inventor-card">
             <img src="images/anders-square.jpg" alt="Anders Hejlsberg">
-            <h4>C#</h4>
-            <p>Anders Hejlsberg, 2000</p>
+            <h4>C# <span class="sub">(2000)</span></h4>
+            <p>Anders Hejlsberg</p>
             <ul style="font-size:0.8em; text-align:left; margin-top:12px;">
               <li>Strong typing <span class="sub">&amp; tooling</span></li>
               <li>Enterprise <span class="sub">focused</span></li>
@@ -329,51 +336,7 @@ plt.plot(t, filtered)                      # Matplotlib ← NumPy</code></pre>
 
       </section>
 
-      <!-- ============ SLIDE 8: THE KILLER PROPERTY ============ -->
-      <section>
-        <section>
-          <h3>The Killer Property: Duck Typing</h3>
-<pre><code class="language-python">def f(x):
-    return x*x + 2*x</code></pre>
-<pre><code class="language-python">f(3)              # int → 15
-f(2.5)            # float → 11.25
-f(1+2j)           # complex → (-2+6j)
-
-import numpy as np
-f(np.array([1,2,3]))   # ndarray → [3, 8, 15]
-
-import torch
-f(torch.tensor([1.,2.,3.]))  # GPU tensor</code></pre>
-          <p><strong>One function. Five domains. Zero changes.</strong></p>
-          <p style="font-size:0.5em; color:#888; margin-top:16px;">more</p>
-          <aside class="notes">
-            This is the slide that should make the audience pause. One function — no generics, no overloads, no interfaces — and it works on integers, floats, complex numbers, arrays of a million elements, and GPU tensors. Duck typing means if it quacks like a number, Python will do maths on it.
-          </aside>
-        </section>
-
-        <section>
-          <h3>The Same Thing in C#</h3>
-<pre><code class="language-csharp">// .NET 7+ with Generic Math
-T F&lt;T&gt;(T x) where T : INumber&lt;T&gt;
-{
-    return x * x + (T.One + T.One) * x;
-}
-
-F(3);         // int → 15
-F(2.5);       // double → 11.25</code></pre>
-
-<pre><code class="language-csharp">// Complex? Need a different overload.
-// Arrays? Manual loop or LINQ.
-// GPU tensors? Completely different API.</code></pre>
-
-          <p><em>C# can do it &mdash; but each domain needs new code</em></p>
-          <aside class="notes">
-            C# got generic math in .NET 7 — INumber&lt;T&gt; — which is genuinely cool. But it only covers numeric types. Complex numbers don't implement INumber. Arrays need LINQ or loops. GPU tensors are a completely different world (TorchSharp). In Python, duck typing makes this free. In C#, every new domain is more code.
-          </aside>
-        </section>
-      </section>
-
-      <!-- ============ SLIDE 9: TAKEAWAY ============ -->
+      <!-- ============ SLIDE 8: TAKEAWAY ============ -->
       <section>
         <h2>Takeaway</h2>
         <p>Python won because it made<br><strong>fast things easy</strong></p>
@@ -577,6 +540,14 @@ for (int epoch = 0; epoch &lt; 1000;
         </em></p>
         <aside class="notes">
           Both train the same XOR network. Both work. But the C# version has named layer tuples, using var for tensor disposal (every tensor is unmanaged memory), .forward() instead of calling the model directly, and the longer parameter name learningRate vs lr. None of these are deal-breakers — but in a research loop where you're iterating fast, every character counts.
+        </aside>
+      </section>
+
+      <!-- ============ DEMO: LORENZ (full image) ============ -->
+      <section>
+        <img src="images/lorenz.png" alt="Lorenz attractor" style="max-height:90vh;">
+        <aside class="notes">
+          Lorenz attractor — a chaotic system of three coupled differential equations. 15 lines of Python, one stunning plot.
         </aside>
       </section>
 
