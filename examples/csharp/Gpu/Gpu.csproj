@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="TorchSharp" Version="0.103.0" />
+    <!-- CPU backend — swap for TorchSharp-cuda-windows for GPU -->
+    <PackageReference Include="libtorch-cpu-win-x64" Version="2.5.1.1" />
+  </ItemGroup>
+</Project>
