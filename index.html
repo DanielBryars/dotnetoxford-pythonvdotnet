@@ -1,0 +1,350 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Why Python Won ML</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/black.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/plugin/highlight/monokai.css">
+
+  <style>
+    .two-col {
+      display: flex;
+      gap: 40px;
+    }
+    .col {
+      flex: 1;
+    }
+    pre {
+      font-size: 0.55em;
+    }
+    .timeline {
+      list-style: none;
+      padding: 0;
+      font-size: 0.7em;
+      text-align: left;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .timeline li {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 8px;
+      align-items: baseline;
+    }
+    .timeline .year {
+      font-weight: bold;
+      min-width: 60px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .timeline .python-event {
+      color: #3776ab;
+    }
+    .timeline .csharp-event {
+      color: #68217a;
+    }
+    .timeline .label {
+      display: inline-block;
+      font-size: 0.7em;
+      padding: 1px 6px;
+      border-radius: 3px;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+    .timeline .label-py {
+      background: #3776ab;
+      color: white;
+    }
+    .timeline .label-cs {
+      background: #68217a;
+      color: white;
+    }
+    .vs-table {
+      width: 100%;
+      font-size: 0.65em;
+      border-collapse: collapse;
+    }
+    .vs-table th, .vs-table td {
+      padding: 6px 12px;
+      text-align: left;
+    }
+    .vs-table th {
+      border-bottom: 2px solid #555;
+    }
+    .inventor-card {
+      text-align: center;
+    }
+    .inventor-card img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #555;
+    }
+    .inventor-card h4 {
+      margin: 12px 0 4px 0;
+    }
+    .inventor-card p {
+      font-size: 0.7em;
+      margin: 0;
+      color: #aaa;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- ============ SLIDE 1: TITLE ============ -->
+      <section>
+        <h2>Why Python Won ML</h2>
+        <h4><em>(and what C# can still do about it)</em></h4>
+        <p>Daniel Bryars</p>
+        <aside class="notes">
+          If you start an ML project today… you pick Python. Why? This talk is about how that happened — and whether C# can claw back ground.
+        </aside>
+      </section>
+
+      <!-- ============ SLIDE 2: ABOUT ME ============ -->
+      <section>
+        <h3>About Me</h3>
+        <div class="inventor-card">
+          <img src="images/profile.jpg" alt="Daniel Bryars">
+        </div>
+        <ul>
+          <li class="fragment">20 years in .NET &mdash; C# by day, Python by night</li>
+          <li class="fragment">Recently completed MSc in AI (heavy Python use)</li>
+        </ul>
+        <aside class="notes">
+          I've been a .NET developer for 20 years, so C# is home. But my MSc in AI meant living in Python — Jupyter notebooks, PyTorch, NumPy — and I came to appreciate why it dominates ML.
+        </aside>
+      </section>
+
+      <!-- ============ SLIDE 3: TWO LANGUAGES ============ -->
+      <section>
+        <h3>Two Languages, Two Philosophies</h3>
+        <div class="two-col">
+          <div class="col inventor-card">
+            <img src="images/GuidovanRossum.jpg" alt="Guido van Rossum">
+            <h4>Python</h4>
+            <p>Guido van Rossum, 1991</p>
+            <ul style="font-size:0.8em; text-align:left; margin-top:12px;">
+              <li class="fragment">Readability over speed</li>
+              <li class="fragment">Scripting &amp; teaching</li>
+              <li class="fragment">Never intended for ML</li>
+            </ul>
+          </div>
+          <div class="col inventor-card">
+            <img src="images/anders-square.jpg" alt="Anders Hejlsberg">
+            <h4>C#</h4>
+            <p>Anders Hejlsberg, 2000</p>
+            <ul style="font-size:0.8em; text-align:left; margin-top:12px;">
+              <li class="fragment">Strong typing &amp; tooling</li>
+              <li class="fragment">Enterprise-focused</li>
+              <li class="fragment">Closed source until 2014</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">
+          Python was a teaching and scripting language — Guido wanted something between shell scripts and C. Nobody predicted it would dominate machine learning. C# was designed for building large, reliable systems. But being closed source and Windows-only for its first 14 years meant academia and the research community never touched it. By the time .NET went open source, Python had already won.
+        </aside>
+      </section>
+
+      <!-- ============ SLIDE 5: THE PARADOX ============ -->
+      <section>
+        <h3>The Paradox</h3>
+        <div class="two-col">
+          <div class="col">
+            <h4>Python</h4>
+            <ul>
+              <li class="fragment">Dynamic</li>
+              <li class="fragment">~100x slower</li>
+              <li class="fragment">No type safety</li>
+            </ul>
+          </div>
+          <div class="col">
+            <h4>C#</h4>
+            <ul>
+              <li class="fragment">Strongly typed</li>
+              <li class="fragment">JIT-compiled</li>
+              <li class="fragment">Battle-tested tooling</li>
+            </ul>
+          </div>
+        </div>
+        <p class="fragment"><strong>Yet &rarr; Python dominates ML</strong></p>
+        <aside class="notes">
+          By every traditional software engineering metric, C# should win. It's faster, safer, better tooled. But ML doesn't play by those rules — the bottleneck was never the language, it was the ecosystem.
+        </aside>
+      </section>
+
+      <!-- ============ SLIDE 6: TIMELINE ============ -->
+      <section>
+        <section>
+          <h3>What Actually Happened</h3>
+          <ul class="timeline">
+            <li class="fragment"><span class="year">1991</span> <span class="label label-py">PY</span> Python released</li>
+            <li class="fragment"><span class="year">1995</span> <span class="label label-py">PY</span> NumPy predecessor (Numeric)</li>
+            <li class="fragment"><span class="year">2000</span> <span class="label label-cs">C#</span> C# 1.0 (closed source, Windows-only)</li>
+            <li class="fragment"><span class="year">2001</span> <span class="label label-py">PY</span> SciPy &amp; IPython (Fernando P&eacute;rez)</li>
+            <li class="fragment"><span class="year">2005</span> <span class="label label-py">PY</span> NumPy 1.0 (wraps Fortran BLAS/LAPACK)</li>
+            <li class="fragment"><span class="year">2007</span> <span class="label label-py">PY</span> scikit-learn begins</li>
+            <li class="fragment"><span class="year">2011</span> <span class="label label-py">PY</span> IPython Notebook launches</li>
+            <li class="fragment"><span class="year">2012</span> <span class="label label-py">PY</span> Deep learning explodes (AlexNet)</li>
+          </ul>
+          <p style="font-size:0.6em; margin-top:16px;">&darr; more</p>
+          <aside class="notes">
+            Look at this timeline. By the time C# even existed, Python already had numerical computing locked down. By the time deep learning exploded in 2012, Python had a 20-year head start.
+          </aside>
+        </section>
+
+        <section>
+          <h3>What Actually Happened (cont.)</h3>
+          <ul class="timeline">
+            <li class="fragment"><span class="year">2014</span> <span class="label label-cs">C#</span> .NET goes open source / cross-platform</li>
+            <li class="fragment"><span class="year">2014</span> <span class="label label-py">PY</span> Jupyter Project (from IPython)</li>
+            <li class="fragment"><span class="year">2015</span> <span class="label label-py">PY</span> TensorFlow released (Google)</li>
+            <li class="fragment"><span class="year">2016</span> <span class="label label-py">PY</span> PyTorch released (Facebook/Meta)</li>
+            <li class="fragment"><span class="year">2018</span> <span class="label label-cs">C#</span> ML.NET 1.0</li>
+            <li class="fragment"><span class="year">2021</span> <span class="label label-cs">C#</span> TorchSharp (PyTorch for .NET)</li>
+            <li class="fragment"><span class="year">2022</span> <span class="label label-cs">C#</span> Generic Math / INumber&lt;T&gt; (.NET 7)</li>
+          </ul>
+          <aside class="notes">
+            C# didn't go open source until 2014. ML.NET arrived in 2018 — six years after deep learning took off. Generic math with INumber&lt;T&gt; finally landed in .NET 7 in 2022. Too late to change the default, but not too late to be useful.
+          </aside>
+        </section>
+      </section>
+
+      <!-- ============ SLIDE 7: THE STACK ============ -->
+      <section>
+        <section>
+          <h3>Python&rsquo;s Unfair Advantage</h3>
+          <ul>
+            <li class="fragment"><strong>NumPy</strong> &mdash; vectorised maths, Fortran BLAS/LAPACK core</li>
+            <li class="fragment"><strong>PyTorch / TensorFlow</strong> &mdash; GPU-native, CUDA kernels</li>
+            <li class="fragment"><strong>Jupyter</strong> &mdash; REPL-driven, visual, shareable</li>
+          </ul>
+          <p class="fragment" style="margin-top:24px;"><em>Python doesn&rsquo;t do the maths &mdash; it orchestrates C, Fortran, and CUDA</em></p>
+          <p style="font-size:0.6em; margin-top:16px;">&darr; Jupyter vs LINQPad</p>
+          <aside class="notes">
+            This is the key insight. Python is slow — everyone knows that. But Python ML is fast because Python never does the heavy lifting. NumPy calls into BLAS and LAPACK — battle-hardened Fortran code from the 1970s. PyTorch dispatches to CUDA kernels. Python is just the steering wheel.
+          </aside>
+        </section>
+
+        <section>
+          <h3>Jupyter vs LINQPad</h3>
+          <div class="two-col">
+            <div class="col">
+              <h4>Jupyter</h4>
+              <ul>
+                <li>Fernando P&eacute;rez, 2001 (as IPython)</li>
+                <li>Browser-based notebooks</li>
+                <li>Inline plots &amp; rich output</li>
+                <li>Became the standard in academia</li>
+              </ul>
+            </div>
+            <div class="col">
+              <h4>LINQPad</h4>
+              <ul>
+                <li>Joseph Albahari, 2007</li>
+                <li>Desktop scratchpad for .NET</li>
+                <li>Brilliant &mdash; but niche</li>
+                <li>No academic adoption</li>
+              </ul>
+            </div>
+          </div>
+          <p class="fragment" style="margin-top:16px;"><em>Same idea, different worlds. Jupyter reached researchers. LINQPad reached developers.</em></p>
+          <aside class="notes">
+            I remember being repulsed by Jupyter when I first used it — coming from C# and Visual Studio, it felt primitive. But the feedback loop — run a cell, see the plot, tweak — is addictive. LINQPad is arguably better as a tool, but Jupyter became the interface to ML. And doing a REPL in C# in 2010? Painful.
+          </aside>
+        </section>
+      </section>
+
+      <!-- ============ SLIDE 8: THE KILLER PROPERTY ============ -->
+      <section>
+        <section>
+          <h3>The Killer Property: Duck Typing</h3>
+<pre><code class="language-python">def f(x):
+    return x*x + 2*x</code></pre>
+<pre class="fragment"><code class="language-python">f(3)              # int → 15
+f(2.5)            # float → 11.25
+f(1+2j)           # complex → (-2+6j)
+
+import numpy as np
+f(np.array([1,2,3]))   # ndarray → [3, 8, 15]
+
+import torch
+f(torch.tensor([1.,2.,3.]))  # GPU tensor</code></pre>
+          <p class="fragment"><strong>One function. Five domains. Zero changes.</strong></p>
+          <p style="font-size:0.6em; margin-top:16px;">&darr; same thing in C#</p>
+          <aside class="notes">
+            This is the slide that should make the audience pause. One function — no generics, no overloads, no interfaces — and it works on integers, floats, complex numbers, arrays of a million elements, and GPU tensors. Duck typing means if it quacks like a number, Python will do maths on it.
+          </aside>
+        </section>
+
+        <section>
+          <h3>The Same Thing in C#</h3>
+<pre><code class="language-csharp">// .NET 7+ with Generic Math
+T F&lt;T&gt;(T x) where T : INumber&lt;T&gt;
+{
+    return x * x + (T.One + T.One) * x;
+}
+
+F(3);         // int → 15
+F(2.5);       // double → 11.25</code></pre>
+
+<pre class="fragment"><code class="language-csharp">// Complex? Need a different overload.
+// Arrays? Manual loop or LINQ.
+// GPU tensors? Completely different API.</code></pre>
+
+          <p class="fragment"><em>C# can do it &mdash; but each domain needs new code</em></p>
+          <aside class="notes">
+            C# got generic math in .NET 7 — INumber&lt;T&gt; — which is genuinely cool. But it only covers numeric types. Complex numbers don't implement INumber. Arrays need LINQ or loops. GPU tensors are a completely different world (TorchSharp). In Python, duck typing makes this free. In C#, every new domain is more code.
+          </aside>
+        </section>
+      </section>
+
+      <!-- ============ SLIDE 9: WHAT C# CAN DO ============ -->
+      <section>
+        <h3>What C# Can Still Do About It</h3>
+        <ul>
+          <li class="fragment"><strong>ML.NET</strong> &mdash; production inference, no Python dependency</li>
+          <li class="fragment"><strong>TorchSharp</strong> &mdash; PyTorch bindings for .NET</li>
+          <li class="fragment"><strong>ONNX Runtime</strong> &mdash; deploy any model, any framework</li>
+          <li class="fragment"><strong>Semantic Kernel</strong> &mdash; AI orchestration in C#</li>
+          <li class="fragment"><strong>Generic Math</strong> &mdash; INumber&lt;T&gt; (.NET 7+)</li>
+        </ul>
+        <p class="fragment" style="margin-top:24px;"><em>Train in Python. Ship in C#.</em></p>
+        <aside class="notes">
+          C# doesn't need to win training — that ship has sailed. But deployment? That's where type safety, performance, and tooling shine. ONNX Runtime lets you train a model in PyTorch and run it in a C# microservice. Semantic Kernel is Microsoft's play for AI-native C# apps. The smart play: use both.
+        </aside>
+      </section>
+
+      <!-- ============ SLIDE 10: TAKEAWAY ============ -->
+      <section>
+        <h2>Takeaway</h2>
+        <p class="fragment">Python won because it made<br><strong>fast things easy</strong></p>
+        <p class="fragment">C# can win where it makes<br><strong>safe things fast</strong></p>
+        <aside class="notes">
+          Python owns experimentation — the REPL, the notebooks, the duck typing, the ecosystem. C# owns production — the type safety, the performance, the tooling. The real answer isn't "pick one" — it's knowing when to use which. Train in Python, ship in C#.
+        </aside>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/highlight/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js"></script>
+
+  <script>
+    Reveal.initialize({
+      hash: true,
+      plugins: [ RevealHighlight, RevealNotes ]
+    });
+  </script>
+</body>
+</html>
